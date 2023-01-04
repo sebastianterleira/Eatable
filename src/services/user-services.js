@@ -22,6 +22,6 @@ export async function updateUser(data) {
 		method: "PATCH",
 	});
 
-  sessionStorage.setItem(tokenKey, token);
+	sessionStorage.setItem(tokenKey, token);
 	return user;
 }
