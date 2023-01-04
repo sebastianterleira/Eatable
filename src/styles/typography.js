@@ -1,6 +1,10 @@
 export const fonts = {
   primary: `"Source Code Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
   Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`,
+	secondary: `"SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`,
+	third: `"Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`,
 };
 
 export const typography = {
