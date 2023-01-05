@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useState } from "react";
 import styled from "@emotion/styled";
 import { fonts } from "./styles/typography";
-import { NavLink } from "react-router-dom";
 import { colors, typography } from "../src/styles";
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
 import LoginForm from "./components/login-form";
 import SignupForm from "./components/signup-form";
@@ -88,10 +88,9 @@ const StyledNavLink = styled(NavLink)`
 		opacity: 1;
 		width: 100%;
   }
-	.activo: {
+	.activo::before {
 		opacity: 1;
 		width: 100%;
-		color: blue;
 	}
 `;
 
@@ -146,7 +145,7 @@ function UnauthenticatedApp() {
 				align-items: center;
 				`}>
 					<LogoImagen>
-						<img src={require("../src/static/img/Eatable.png")}/>
+						<img src={require("../src/static/Eatable.png")}/>
 					</LogoImagen>
 					<FraseLogo>Food for Everyone</FraseLogo>
 					<CustomButton onClick={handleLinkChange}>
