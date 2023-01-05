@@ -11,7 +11,7 @@ export async function login(credentials) {
 }
 
 export async function logout() {
-	await collectionClient("/logut", {
+	await collectionClient("/logout", {
 		method: "DELETE",
 	});
 
