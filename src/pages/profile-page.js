@@ -6,6 +6,8 @@ import { MdArrowBackIosNew } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { colors } from "../styles";
+import { useAuth } from "../context/auth-context";
+import { useState } from "react";
 
 const Wrapper = styled.div`
 max-width: 480px;
@@ -95,7 +97,6 @@ height: 60px;
 overflow: hidden;
 background-color: #FFFFFF;
 border-radius: 20px;
-margin-bottom: 285px;
 `
 
 const WrapperButton = styled.div`
@@ -134,8 +135,12 @@ const ButtonLogout = styled.button`
 `
 
 
-function ProfilePage({item}) {
+function ProfilePage() {
 	const history = useNavigate()
+	const { logout } = useAuth();
+  const {user, setUser} = useAuth();
+	const [data, setData] = useState({...user, password:""})
+
 	return(
 		<Wrapper>
 			<ContentTittle>
@@ -168,15 +173,27 @@ function ProfilePage({item}) {
 				display: flex;
 				flex-direction: column;
 				`}>
-					<NameUser>Sebastián Terleira</NameUser>
-					<InfoUser>my-email@mail.com</InfoUser>
+					<NameUser>{data.name === null ? "No tengo Nombre" : data.name}</NameUser>
+					<InfoUser>{data.email === null ? "No tengo email" : data.email}</InfoUser>
 					<HorizontalLine/>
-					<InfoUser>341231941</InfoUser>
+					<InfoUser>{data.phone === null ? "No tengo phone" : data.phone}</InfoUser>
 					<HorizontalLine/>
-					<InfoUser>Calle Rosales 123, urb El Jardin</InfoUser>
+					<InfoUser>{data.address === null ? "No tengo address" : data.address}</InfoUser>
 				</div>
 			</CardWhite>
-			<Link
+			<div css={css`
+			display: flex;
+			flex-direction: column;
+			gap: 285px;
+			`}>
+			<Link css={css`
+				text-decoration:none;
+				color: #000;
+				&:hover,
+				&:focus {
+					color: #000;
+				};
+				`}
 			to={"/history"}
 			>
 			<CardWhiteHistory>
@@ -186,7 +203,8 @@ function ProfilePage({item}) {
 				</WrapperButton>
 			</CardWhiteHistory>
 			</Link>
-			<ButtonLogout>Logout</ButtonLogout>
+			<ButtonLogout onClick={() => logout()}>Logout</ButtonLogout>
+			</div>
 		</Wrapper>
 	);
 }
