@@ -54,7 +54,7 @@ font-weight: 600;
 const CustomButton = styled.button`
 background: none;
 border:none;
-color: #2
+color: #000
 font-size: 16px;
 font-weight: 700;
 line-height: 20px;
@@ -154,10 +154,8 @@ function UnauthenticatedApp() {
 				</div>
 			</CardWhite>
 			<Routes>
-					<Route path="/">
-						<Route exact path="login" activeClassName="activo" element={<LoginForm/>} />
-						<Route exact path="signup" activeClassName="activo" element={<SignupForm/>} />
-					</Route>
+						<Route path="login" activeClassName="activo" element={<LoginForm/>} />
+						<Route path="signup" activeClassName="activo" element={<SignupForm/>} />
     </Routes>
     </Wrapper>
   )
