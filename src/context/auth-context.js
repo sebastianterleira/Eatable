@@ -10,7 +10,7 @@ function AuthProvider(props) {
   // useEffect(() => {
   //   getUser().then(setUser).catch(console.log);
   // }, []);
-
+  
   function login(credentials) {
     auth.login(credentials).then(setUser).catch(console.log);
   }

@@ -1,9 +1,10 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import Footer from "./components/footer";
 import { Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
 import ProfilePage from "./pages/profile-page";
+import { getUser } from "./services/user-services";
+import UpdatedProfile from "./pages/updated-profile-page";
 
 const Wrapper = styled.div`
 max-width: 480px;
@@ -15,19 +16,40 @@ align-items: center
 `
 
 function AuthenticatedApp() {
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    getUser().then(setProfile).catch(console.log);
+  }, []);
+
+	console.log(profile)
+
 	return (
 		<>
 		<Wrapper>
 			<Routes>
 				<Route
+          path="/"
+          element={
+            <h1>Hola</h1>
+          }
+        />
+				<Route
 				path="/profile-page"
 				element={<ProfilePage/>}
-				>
-				</Route>
+				/>
+				<Route
+				path="/history"
+				element={<ProfilePage/>}
+				/>	
+				<Route
+				path="/updated-profile"
+				element={<UpdatedProfile/>}
+				/>
 			</Routes>
 		</Wrapper>
 		<Footer/>
-			</>
+		</>
 	);
 }
 

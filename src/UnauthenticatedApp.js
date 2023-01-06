@@ -2,7 +2,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { fonts } from "./styles/typography";
-import { colors, typography } from "../src/styles";
+import { typography } from "../src/styles";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
@@ -85,6 +85,7 @@ const StyledNavLink = styled(NavLink)`
   }
 
 	&:hover::before {
+    color: orange;
 		opacity: 1;
 		width: 100%;
   }
