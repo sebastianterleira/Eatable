@@ -10,25 +10,22 @@ const Navbar = styled("footer")`
   align-items: space-between;
   justify-content: space-evenly;
   align-items: center;
-  padding: 16px 16px;
-  gap: 45px;
-  width: 100%;
-  height: 100%;
-  box-shadow: 0px -2px 0px rgba(0, 0, 0, 0.25);
+  padding: 0.5rem;
+  gap: 121px;
   margin-top: 20px;
 `;
 
 function Footer() {
   return (
     <Navbar>
-      <Link to={"/products"}>
-        <TiHome style={{height:43,width:43,color:"#BDBDBD"}}/>
-      </Link>
       <Link to={"/"}>
-        <BiUser style={{height:43,width:43,color:"#828282"}}/>
+        <TiHome style={{height:24.8,width:24.76,color:"#ADADAF"}}/>
       </Link>
-      <Link to={"/orders"}>
-        <BiHistory style={{height:43,width:43,color:"#BDBDBD"}} />
+      <Link to={"/profile-page"}>
+        <BiUser style={{height:24.8,width:24.76,color:"#ADADAF"}}/>
+      </Link>
+      <Link to={"/history"}>
+        <BiHistory style={{height:21.75,width:25.38,color:"#ADADAF"}}/>
       </Link>
     </Navbar>
   );
