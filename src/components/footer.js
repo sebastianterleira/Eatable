@@ -12,7 +12,8 @@ const Navbar = styled("footer")`
   align-items: center;
   padding: 0.5rem;
   gap: 121px;
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 `;
 
 function Footer() {
