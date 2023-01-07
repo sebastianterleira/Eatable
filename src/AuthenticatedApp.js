@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import ProfilePage from "./pages/profile-page";
 import { getUser } from "./services/user-services";
 import UpdatedProfile from "./pages/updated-profile-page";
+import SearchPage from "./pages/search-page";
 
 const Wrapper = styled.div`
 max-width: 480px;
@@ -31,19 +32,19 @@ function AuthenticatedApp() {
 				<Route
           path="/"
           element={
-            <h1>Hola</h1>
+            <SearchPage/>
           }
         />
 				<Route
-				path="/profile-page"
+				path="profile-page"
 				element={<ProfilePage/>}
 				/>
 				<Route
-				path="/history"
+				path="history"
 				element={<ProfilePage/>}
 				/>	
 				<Route
-				path="/updated-profile"
+				path="updated-profile"
 				element={<UpdatedProfile/>}
 				/>
 			</Routes>
