@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { FiSearch } from "react-icons/fi";
 import { FiShoppingCart } from "react-icons/fi";
+import { MdArrowBackIosNew } from "react-icons/md";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { fonts } from "../styles/typography";
@@ -10,6 +11,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ButtonList from "../components/button-list";
 import ProductList from "../components/products-list";
+import { colors } from "../styles";
 
 const Wrapper = styled.div`
 max-width: 480px;
@@ -87,6 +89,7 @@ border-style: none;
 	
 	useEffect(() => {
 		getProductsUser();
+		setState({ status: "success" })
 	}, [])
 
 	const filterSearch =(terminoBusqueda) => {
@@ -97,6 +100,8 @@ border-style: none;
 		});
 		setProducts(searchResults);
 	}
+
+	console.log(filterSearch)
 
 	const allCategories = ['All', 'soups', 'mexican', 'sushi', 'italian', 'snack', 'Korean food', 'French food'];
 	console.log(allCategories);
@@ -111,16 +116,25 @@ border-style: none;
 		setProducts(filteredData)
 	}
 
-	const NoData = styled.div`
-	
-	`
+	const NoData = (
+    <div css={css`margin-top: 210px; margin-bottom: 260px;`}>
+      <FiSearch css={css`font-size: 110px; margin-bottom: 12px`} color={colors.gray} />
+      <p css={css`font-size: 28xp; line-height: 35px; font-weight: 600; font-family: ${fonts.third};`}>No products found</p>
+    </div>
+  );
 
 	return (
 		<>
 		<Wrapper>
 			<ContentSearch>
 				<div css={css`margin-right: 20px;`}>
-						<FiSearch/>
+				{products.length === 26 && (
+				<FiSearch/>)}
+				{products.length <= 25 && (
+				<button onClick={() => window.location.reload()} css={css`border-width: 0; padding: 0;`}>
+				<MdArrowBackIosNew color={colors.black} />
+				</button>
+				)}
 						<Input
 					onChange={(event) => filterSearch(event.target.value)}
           placeholder="Search"
@@ -131,9 +145,11 @@ border-style: none;
 				</div>
 			</ContentSearch>
 		</Wrapper>
-		<ButtonList categories={categories} filterCategory={filterCategory}/>
-					{products.length === 0 && "NoData"}
-	<ProductList products={products} />
+		{products.length === 26 && (
+			<ButtonList categories={categories} filterCategory={filterCategory}/>
+		)}
+		{products.length === 0 && NoData}
+		<ProductList products={products} />
 	</>
 	);
 }
