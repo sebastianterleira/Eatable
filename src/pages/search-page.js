@@ -148,6 +148,16 @@ border-style: none;
 		{products.length === 26 && (
 			<ButtonList categories={categories} filterCategory={filterCategory}/>
 		)}
+		{products.length <= 25 && products.length >= 1 && (
+			<p css={css`
+			margin-top: 32px;
+			margin-bottom: 37px;
+			font-family: ${fonts.secondary};
+			font-weight: 600;
+			font-size: 28px;
+			line-height: 35.2px
+			`}>{`Fount ${products.length} results`}</p>
+		)}
 		{products.length === 0 && NoData}
 		<ProductList products={products} />
 	</>
