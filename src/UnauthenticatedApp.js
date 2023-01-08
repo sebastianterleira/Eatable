@@ -131,7 +131,7 @@ function NavLoginSignUp() {
 
 function UnauthenticatedApp() {
   const [showLogin, setShowLogin] = useState(true);
-
+  
   function handleLinkChange(event) {
     event.preventDefault();
     setShowLogin(!showLogin)
