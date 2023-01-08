@@ -11,8 +11,8 @@ const Wrapper = styled.section`
   flex-direction: row;
 	overflow-x: auto;
 	&::-webkit-scrollbar {
-    width: 8px;     /* Tamaño del scroll en vertical */
-    height: 8px;    /* Tamaño del scroll en horizontal */
+    width: 7px;     /* Tamaño del scroll en vertical */
+    height: 7px;    /* Tamaño del scroll en horizontal */
 }
 	&::-webkit-scrollbar-thumb {
 		background: #FA4A0C;
@@ -30,7 +30,8 @@ line-height: 20px;
 display: flex;
 flex-direction: row;
 align-items: center;
-gap: 40px;
+gap: 34px;
+width: 300px;
 `
 
 const StyledNavLink = styled(NavLink)`
