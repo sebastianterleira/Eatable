@@ -42,9 +42,8 @@ border-style: none;
   `
 	
 	function SearchPage({ onProfile }) {
-	const [categories, setCategories] = useState([]);
 	const [products, setProducts] = useState([]);
-	const [tablaProducts, setTablaproducts] = useState([]);
+	const [tablaProducts, setTablaProducts] = useState([]);
   const [query, setQuery] = useState("");
 	const [state, setState] = useState({
     status: "idle",
@@ -80,8 +79,7 @@ border-style: none;
 		await axios.get("https://react-eatable-api.herokuapp.com/products/")
 		.then(response=>{
 			setProducts(response.data);
-			setTablaproducts(response.data);
-			setCategories(allCategories) 
+			setTablaProducts(response.data);
 		}).catch(error=>{
 			console.log(error);
 		})
@@ -103,17 +101,22 @@ border-style: none;
 
 	console.log(filterSearch)
 
-	const allCategories = ['All', 'soups', 'mexican', 'sushi', 'italian', 'snack', 'Korean food', 'French food'];
-	console.log(allCategories);
+	let allCategories = products.reduce((accu, current) => {
+    if (!accu.includes(current.category)) accu.push(current.category);
+
+		return accu;
+  }, ["All"]);
+
+	console.log(allCategories)
 
 	const filterCategory = (category) => {
 		if(category === "All") {
 			setProducts(tablaProducts)
-			return
+			return;
 }
 
 		const filteredData = tablaProducts.filter(product => product.category === category)
-		setProducts(filteredData)
+		setProducts(filteredData);
 	}
 
 	const NoData = (
@@ -146,7 +149,7 @@ border-style: none;
 			</ContentSearch>
 		</Wrapper>
 		{products.length === 26 && (
-			<ButtonList categories={categories} filterCategory={filterCategory}/>
+			<ButtonList categories={allCategories} filterCategory={filterCategory}/>
 		)}
 		{products.length <= 25 && products.length >= 1 && (
 			<p css={css`

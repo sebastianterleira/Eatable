@@ -2,8 +2,11 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { fonts } from "../styles/typography";
+import ProductPreview from "./view-product";
+import { Link, Route, useNavigate } from "react-router-dom";
 
 const ContainerCard = styled("div")`
+	margin-top: 20px;
   display: grid;
 	grid-gap: 20px;
 	grid-template-columns: repeat(2, 156px);
@@ -26,6 +29,7 @@ overflow: hidden;
 		box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   transform: translateY(-3%);
   }
+	cursor: pointer;
 `;
 
 const ImagenProduct = styled("img")`
@@ -59,16 +63,25 @@ font-family: ${fonts.secondary};
 font-weight: 600;
 font-size: 22px;
 line-height: 27.65px;
-color: orange;
+color: #FA4A0C;
 `
 
 function ProductList({products}) {
+	const navigate = useNavigate();
+
+	function HandelClick(id) {
+		navigate(`products/${id}`)
+	}
+
 	console.log(products)
 	return (
 		<ContainerCard>
 				{products &&
 						products.map((product)=>(
-						<CardData key={product.id}>
+							<CardData 
+							key={product.id}
+							onClick={() => HandelClick(product.id)}
+							>
 							<ImagenProduct src={product.picture_url}/>
 							<div css={css`display: flex;`}>
 								<ProductName>{product.name === null ? "No content" : product.name}</ProductName>
