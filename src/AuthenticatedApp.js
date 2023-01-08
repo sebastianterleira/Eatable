@@ -6,6 +6,7 @@ import ProfilePage from "./pages/profile-page";
 import { getUser } from "./services/user-services";
 import UpdatedProfile from "./pages/updated-profile-page";
 import SearchPage from "./pages/search-page";
+import ProductPreview from "./components/view-product";
 
 const Wrapper = styled.div`
 max-width: 480px;
@@ -29,12 +30,7 @@ function AuthenticatedApp() {
 		<>
 		<Wrapper>
 			<Routes>
-				<Route
-          path="/"
-          element={
-            <SearchPage/>
-          }
-        />
+			<Route index element={<SearchPage />} />
 				<Route
 				path="profile-page"
 				element={<ProfilePage/>}
@@ -46,6 +42,10 @@ function AuthenticatedApp() {
 				<Route
 				path="updated-profile"
 				element={<UpdatedProfile/>}
+				/>
+				<Route
+				path="products/:id"
+				element={<ProductPreview/>}
 				/>
 			</Routes>
 		</Wrapper>
