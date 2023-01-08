@@ -41,7 +41,7 @@ outline: none;
 border-style: none;
   `
 	
-	function SearchPage({ onProfile }) {
+	function SearchPage() {
 	const [products, setProducts] = useState([]);
 	const [tablaProducts, setTablaProducts] = useState([]);
   const [query, setQuery] = useState("");
@@ -57,7 +57,6 @@ border-style: none;
 		setState({ status: "pending" })
 		getProductsUser(query)
 		.then((data) => {
-				onProfile(data)
 				setState({
 					status: "success",
 					data: data,
@@ -72,8 +71,8 @@ border-style: none;
 					error: "El usuario no existe! Intenta de nuevo o perdio Conexion 💀",
 				});
 			});
-	}, [onProfile, query]);
-	console.log(query)
+	}, [query]);
+	console.log(item)
 
 	const getProductsUser = async()=> {
 		await axios.get("https://react-eatable-api.herokuapp.com/products/")
