@@ -1,12 +1,23 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { typography } from "../styles"; 
 import { fonts } from "../styles";
 import { NavLink } from "react-router-dom";
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
+	max-width: 480px;
   display: flex;
   flex-direction: row;
-	gap: 4px;
+	overflow-x: auto;
+	&::-webkit-scrollbar {
+    width: 8px;     /* Tamaño del scroll en vertical */
+    height: 8px;    /* Tamaño del scroll en horizontal */
+}
+	&::-webkit-scrollbar-thumb {
+		background: #FA4A0C;
+    border-radius: 4px;
+	}
 `;
 
 const CustomButton = styled.button`
@@ -16,6 +27,10 @@ color: #000
 font-size: 16px;
 font-weight: 700;
 line-height: 20px;
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 40px;
 `
 
 const StyledNavLink = styled(NavLink)`
@@ -57,19 +72,17 @@ function ButtonList({categories, filterCategory}) {
 	console.log(categories)
 	return (
 		<Wrapper>
-			<div id="slider" className="w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth">
-			{ categories.map((category) => (
 				<CustomButton>
+			{ categories?.map((category) => (
 					<StyledNavLink
 					key={`dish ${category}`}
 					type="button"
 					onClick={() => filterCategory(category)}
 					>
 						{category}
-					</StyledNavLink>
-				</CustomButton>
+						</StyledNavLink>
 				))}
-			</div>
+				</CustomButton>
 		</Wrapper>
 	);
 }
