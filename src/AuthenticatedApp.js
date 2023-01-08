@@ -6,7 +6,9 @@ import ProfilePage from "./pages/profile-page";
 import { getUser } from "./services/user-services";
 import UpdatedProfile from "./pages/updated-profile-page";
 import SearchPage from "./pages/search-page";
-import ProductPreview from "./components/view-product";
+import React, {Suspense, lazy} from "react";
+import ComponentLazyLoad from "./components/lazy-load";
+const ProductPreview = lazy(() => import("./components/view-product"))
 
 const Wrapper = styled.div`
 max-width: 480px;
@@ -18,13 +20,6 @@ align-items: center
 `
 
 function AuthenticatedApp() {
-  const [profile, setProfile] = useState(null);
-
-  useEffect(() => {
-    getUser().then(setProfile).catch(console.log);
-  }, []);
-
-	console.log(profile)
 
 	return (
 		<>
@@ -43,9 +38,13 @@ function AuthenticatedApp() {
 				path="updated-profile"
 				element={<UpdatedProfile/>}
 				/>
+				
 				<Route
 				path="products/:id"
-				element={<ProductPreview/>}
+				element={
+				<Suspense fallback={<ComponentLazyLoad/>}>
+					<ProductPreview/>
+					</Suspense>}
 				/>
 			</Routes>
 		</Wrapper>
