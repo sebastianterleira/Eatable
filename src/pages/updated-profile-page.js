@@ -9,7 +9,6 @@ import { colors } from "../styles";
 import { useAuth } from "../context/auth-context";
 import { updateUser } from "../services/user-services";
 import { tokenKey } from "../config";
-import Input from "../components/input";
 
 const Wrapper = styled.div`
 max-width: 480px;
@@ -117,7 +116,7 @@ const ButtonSubmit = styled.button`
   }
 `
 
-function UpdatedProfile({item}) {
+function UpdatedProfile() {
 	const history = useNavigate()
 	const {user, setUser} = useAuth();
   const [data, setData] = useState({...user, password:""})
