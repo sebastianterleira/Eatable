@@ -125,7 +125,6 @@ function UpdatedProfile() {
     updateUser(data).then((response =>{
       setUser(response)
     })).catch(error=> console.log(error))
-    sessionStorage.removeItem(tokenKey)
   }
 
   function handleChange(event){
@@ -194,7 +193,7 @@ function UpdatedProfile() {
 				<HorizontalLine/>
 				</div>
 			</CardWhite>
-        <ButtonSubmit type="submit">Update</ButtonSubmit>
+        <ButtonSubmit onClick={() => history(-1)} type="submit">Update</ButtonSubmit>
       </Form>
 		</Wrapper>
 	);
